@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,700');
+
+.fx-row {
+  display: flex;
+  align-items: center;
+}
+
+.fx-end {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.t-mono  {
+  font-family: 'Roboto Mono', monospace;
+}
+
+.t-upper {
+  text-transform: uppercase;
+}
+
+.fc-blue {
+  color: #5000FF;
+}
+
+.fc-pink {
+  color: #FF2986;
+}
+
+.f-10 {
+  font-size: 10px;
+}
+
+.f-12 {
+  font-size: 12px;
+}
+
+.f-18 {
+  font-size: 18px;
+}
+
+.ls-2 {
+  letter-spacing: 2px;
+}
+
+.fw-400 {
+  font-weight: 400;
+}
+
+.fw-700 {
+  font-weight: 700;
+}
+
+.bg-white {
+  background-color: white;
+}
+
+.w-30p {
+  width: 30px;
+  min-width: 30px;
+}
+
+.w-40p {
+  width: 40px;
+  min-width: 40px;
+}

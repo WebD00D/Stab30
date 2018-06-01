@@ -1,0 +1,34 @@
+.article-preview {
+  height: 100px;
+  background-color: #F5F5F5;
+  display: flex;
+  align-items: center;
+  margin-bottom: 22px;
+}
+
+.article-preview__image {
+  height: 100px;
+  width: 100px;
+  min-height: 100px;
+  min-width: 100px;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.article-preview__overlay {
+  background: rgba(132, 76, 255, 0.5);
+  mix-blend-mode: overlay;
+  position: absolute;
+  width: 100px;
+  height: 100px;
+}
+
+.article-preview__content {
+  flex: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-left: 12px;
+  margin-right: 12px;
+}
