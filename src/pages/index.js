@@ -54,18 +54,16 @@ class RootIndex extends React.Component {
       return title.indexOf(valueToFilterBy.toUpperCase()) > -1
     })
 
+    let orderedList = _.sortBy(filtered, ['rank'])
+
     this.setState({
-      filteredPosts: filtered,
+      filteredPosts: orderedList,
     })
   }
 
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
     const posts = get(this, 'props.data.allContentfulBlogPost.edges')
-
-    console.log(' POSTS OG ', posts)
-    console.log('state posts', this.state.allPosts)
-    console.log('state filterd posts', this.state.filteredPosts)
 
     return (
       <div>
@@ -89,7 +87,7 @@ class RootIndex extends React.Component {
           </div>
 
           {this.state.filteredPosts.map(({ node }, idx) => {
-            let formattedIdx = idx < 10 ? `0${idx + 1}` : idx
+            let formattedIdx = node.rank < 10 ? `0${node.rank }` : node.rank
             return (
               <div className="container" key={node.slug}>
                 <ArticlePreview article={node} idx={formattedIdx} />
@@ -106,13 +104,12 @@ export default RootIndex
 
 export const pageQuery = graphql`
   query HomeQuery {
-    allContentfulBlogPost(sort: { fields: [publishDate], order: DESC }) {
+    allContentfulBlogPost(sort: { fields: [rank], order: ASC }) {
       edges {
         node {
           title
           slug
-          publishDate(formatString: "MMMM Do, YYYY")
-          tags
+          rank
           heroImage {
             file {
               url
