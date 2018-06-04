@@ -2,6 +2,7 @@
   position: relative;
   z-index: 1;
   background-color: #ffffff;
+  padding-bottom: 130px;
 }
 
 .post-padding {
@@ -46,6 +47,11 @@
   width: auto;
 }
 
+.rank {
+  position: absolute;
+  bottom: -60px;
+}
+
 .blog-post-back {
   height: 30px;
   width: auto;
@@ -55,5 +61,17 @@
 .post-headline {
   padding: 0px;
   margin-top: 60px;
+}
 
+.blog-post__words h2 {
+  font-size: 18px;
+  color: #FF2986;
+  font-family: 'Roboto Mono', monospace;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.blog-post__words p {
+  line-height: 1.5;
+  margin-bottom: 22px;
 }

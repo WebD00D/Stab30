@@ -1,10 +1,12 @@
 import React from 'react'
 import Link from 'gatsby-link'
+import { connect } from 'react-redux'
 
 import './base.css';
 
 import Container from '../components/container'
 import Navigation from '../components/navigation'
+import AudioPlayer from "../components/audioPlayer";
 
 
 
@@ -21,9 +23,42 @@ class Template extends React.Component {
       <div>
         <Navigation />
         {children()}
+        {this.props.AudioPlayerFile ? <AudioPlayer /> : ""}
       </div>
     )
   }
 }
 
-export default Template
+
+const mapStateToProps = ({
+  count,
+  AudioPlayerFile,
+  AudioPlaying,
+  AudioPlayerImageURL,
+  AudioPlayerTitle,
+  AudioPlayerPersonRank,
+}) => {
+  return {
+    count,
+    AudioPlayerFile,
+    AudioPlaying,
+    AudioPlayerImageURL,
+    AudioPlayerTitle,
+    AudioPlayerPersonRank,
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    increaseCount: () =>
+      dispatch({
+        type: `INCREMENT`,
+      }),
+    togglePlay: () =>
+      dispatch({
+        type: `TOGGLE_PLAY`,
+      }),
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Template)

@@ -1,6 +1,6 @@
 .article-preview {
   height: 100px;
-  background-color: #F5F5F5;
+  background-color: #f5f5f5;
   display: flex;
   align-items: center;
   margin-bottom: 22px;
@@ -31,4 +31,27 @@
   align-items: center;
   margin-left: 12px;
   margin-right: 12px;
+}
+
+/* AUDIO PLAYER */
+
+.stab30Player {
+  width: 100%;
+  position: fixed;
+  z-index: 2;
+  bottom: 0;
+  margin-bottom: 0px;
+  background-color: #5000ff;
+  -webkit-box-shadow: 0px 4px 25px 1px rgba(0, 0, 0, 0.75);
+  -moz-box-shadow: 0px 4px 25px 1px rgba(0, 0, 0, 0.75);
+  box-shadow: 0px 4px 25px 1px rgba(0, 0, 0, 0.75);
+}
+
+.player-art-wrap {
+
+  width: 100px;
+  height: 100%;
+  background-color: #252525;
+  margin-bottom: 0px;
+  width: 100%;
 }

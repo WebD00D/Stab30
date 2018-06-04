@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,700');
+@import url('https://fonts.googleapis.com/css?family=Roboto+Mono:400,700|Roboto');
 
 .fx-row {
   display: flex;
@@ -14,6 +14,10 @@
   font-family: 'Roboto Mono', monospace;
 }
 
+.t-serif {
+  font-family: 'Roboto', sans-serif;
+}
+
 .t-upper {
   text-transform: uppercase;
 }
@@ -24,6 +28,10 @@
 
 .fc-pink {
   color: #FF2986;
+}
+
+.fc-grey {
+  color: #808080;
 }
 
 .f-10 {
@@ -38,6 +46,10 @@
   font-size: 18px;
 }
 
+.f-32 {
+  font-size: 32px;
+}
+
 .ls-2 {
   letter-spacing: 2px;
 }
@@ -48,6 +60,14 @@
 
 .fw-700 {
   font-weight: 700;
+}
+
+.m-r-12 {
+  margin-right: 12px;
+}
+
+.fc-white {
+  color: white;
 }
 
 .bg-white {

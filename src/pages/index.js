@@ -4,8 +4,9 @@ import get from 'lodash/get'
 import Helmet from 'react-helmet'
 import Hero from '../components/hero'
 import ArticlePreview from '../components/article-preview'
-
+import { connect } from "react-redux";
 import _ from 'lodash'
+
 
 class RootIndex extends React.Component {
   constructor(props) {
@@ -68,6 +69,7 @@ class RootIndex extends React.Component {
     return (
       <div>
         <Helmet title="Stab x Agenda's 30 Under 30" />
+
         <div className="page-wrap">
           <div className="container">
             <div className="search-box">
@@ -95,12 +97,28 @@ class RootIndex extends React.Component {
             )
           })}
         </div>
+
       </div>
     )
   }
 }
 
-export default RootIndex
+
+
+const mapStateToProps = ({ count }) => {
+  return { count };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    increaseCount: () =>
+      dispatch({
+        type: `INCREMENT`
+      })
+  };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(RootIndex);
 
 export const pageQuery = graphql`
   query HomeQuery {
