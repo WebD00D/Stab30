@@ -99,7 +99,7 @@ class AudioPlayer extends React.Component {
             </div>
             <div className="fc-white t-upper ls-2 t-mono fw-700 f-12 m-r-12">
               {this.props.AudioPlayerTitle}
-              <audio id="audio">
+              <audio loop id="audio">
                 <source src={this.props.AudioPlayerFile} />
               </audio>
             </div>
@@ -112,7 +112,7 @@ class AudioPlayer extends React.Component {
             <img
               className="icon-lg"
               src={withPrefix(`${PlayerIcon}`)}
-              alt="PLAY"
+              alt="PLAYER BTN"
             />
           </div>
         </div>

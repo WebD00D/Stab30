@@ -84,7 +84,7 @@ class BlogPostTemplate extends React.Component {
                 <img
                   className="icon-lg"
                   src={withPrefix(`${PlayerIcon}`)}
-                  alt="PAUSED"
+                  alt="PLAYER BTN"
                 />
               </div>
             </div>
