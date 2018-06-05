@@ -9,51 +9,53 @@ class BlogPostTemplate extends React.Component {
   constructor(props) {
     super(props)
 
-    this._togglePlay = this._togglePlay.bind(this)
+    this._handlePlay = this._handlePlay.bind(this)
 
     this.state = {
       playing: false,
     }
-
   }
 
-  _togglePlay() {
+  _handlePlay() {
     const post = get(this.props, 'data.contentfulBlogPost')
 
-    this.setState({
-      playing: !this.state.playing
-    })
-
-    let formattedRank = post.rank < 10 ? `0${post.rank}` : post.rank
-
-    this.props.togglePlay()
-    this.props.setAudio(
-      'https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/wwy.mp3',
-      post.title,
-      post.heroImage.file.url,
-      formattedRank
-    )
-  }
-
-  componentDidMount() {
-
-    const post = get(this.props, 'data.contentfulBlogPost')
-
-    if ( this.props.AudioPlayerTitle === post.title  ) {
-      this.setState({
-        playing: true
-      })
+    if (this.props.AudioPlayerTitle != post.title) {
+      // Either no titleis set, or user is requesting a new title be played.
+      let formattedRank = post.rank < 10 ? `0${post.rank}` : post.rank
+      this.props.playNewAudio(
+        post.audioFile,
+        post.title,
+        post.heroImage.file.url,
+        formattedRank
+      )
     }
 
+    if (this.props.AudioPlaying && this.props.AudioPlayerTitle === post.title) {
+      // Audio is playing, this current title. Let's pause it.
+      this.props.pauseAudio()
+    }
+
+    if (this.props.AudioPaused && this.props.AudioPlayerTitle === post.title) {
+      // This track was playing. It is paused now and the user wants to unpause it
+      this.props.resumeAudio()
+    }
   }
 
   render() {
     const post = get(this.props, 'data.contentfulBlogPost')
     const siteTitle = get(this.props, 'data.site.siteMetadata.title')
 
-    console.log(post)
-
     let formattedRank = post.rank < 10 ? `0${post.rank}` : post.rank
+
+    let PlayerIcon
+
+    if (post.title === this.props.AudioPlayerTitle) {
+      PlayerIcon = this.props.AudioPlaying
+        ? 'images/icons/pause.png'
+        : 'images/icons/play-button.png'
+    } else {
+      PlayerIcon = 'images/icons/play-button.png'
+    }
 
     return (
       <div>
@@ -74,23 +76,16 @@ class BlogPostTemplate extends React.Component {
               <div className="fc-pink t-mono fw-700 f-32 rank">
                 {formattedRank}
               </div>
+
               <div
-                onClick={() => { this._togglePlay() } }
+                onClick={() => this._handlePlay()}
                 className="play-box hover"
               >
-                {this.state.playing ? (
-                  <img
-                    className="icon-lg"
-                    src={withPrefix('images/icons/pause.png')}
-                    alt="PLAY"
-                  />
-                ) : (
-                  <img
-                    className="icon-lg"
-                    src={withPrefix('images/icons/play-button.png')}
-                    alt="PAUSE"
-                  />
-                )}
+                <img
+                  className="icon-lg"
+                  src={withPrefix(`${PlayerIcon}`)}
+                  alt="PAUSED"
+                />
               </div>
             </div>
 
@@ -116,6 +111,7 @@ const mapStateToProps = ({
   count,
   AudioPlayerFile,
   AudioPlaying,
+  AudioPaused,
   AudioPlayerImageURL,
   AudioPlayerTitle,
   AudioPlayerPersonRank,
@@ -124,6 +120,7 @@ const mapStateToProps = ({
     count,
     AudioPlayerFile,
     AudioPlaying,
+    AudioPaused,
     AudioPlayerImageURL,
     AudioPlayerTitle,
     AudioPlayerPersonRank,
@@ -136,13 +133,14 @@ const mapDispatchToProps = dispatch => {
       dispatch({
         type: `INCREMENT`,
       }),
-    togglePlay: () =>
+
+    pauseAudio: () => dispatch({ type: `PAUSE_AUDIO` }),
+
+    resumeAudio: () => dispatch({ type: `RESUME_AUDIO` }),
+
+    playNewAudio: (file, title, image, rank) =>
       dispatch({
-        type: `TOGGLE_PLAY`,
-      }),
-    setAudio: (file, title, image, rank) =>
-      dispatch({
-        type: `SET_AUDIO`,
+        type: `PLAY_NEW_AUDIO`,
         file,
         title,
         image,
@@ -159,6 +157,7 @@ export const pageQuery = graphql`
       title
       rank
       wordsBy
+      audioFile
       heroImage {
         file {
           url

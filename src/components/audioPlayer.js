@@ -6,62 +6,85 @@ class AudioPlayer extends React.Component {
   constructor(props) {
     super(props)
 
-    this._togglePlay = this._togglePlay.bind(this)
+    this._loadAudio = this._loadAudio.bind(this)
+    this._handlePause = this._handlePause.bind(this)
+    this._handleResume = this._handleResume.bind(this)
+    this._handleTrackState = this._handleTrackState.bind(this)
+
+    this.state = {
+      currentTrackTitle: '',
+    }
   }
-  //
-  // componentDidMount() {
-  //
-  //   console.log("PLAY AUDIO??", this.props.AudioPlaying)
-  //
-  //   let audio = document.getElementById('audio')
-  //   if ( this.props.AudioPlaying ){
-  //     audio.play()
-  //   }
-  //
-  //
-  // }
 
   componentDidMount() {
-    console.log('Component Will Mount', this.props.AudioPlaying)
 
-    let audio = document.getElementById('audio')
+    // Player is mounting for the first time due to a request
+    // to play audio.  This should only happen once during usage,
+    // or every new refreshed visit.
+    this._loadAudio()
 
-    if (this.props.AudioPlaying) {
-      audio.play()
-    } else {
-      audio.pause()
-    }
+    this.setState({
+      currentTrackTitle: this.props.AudioPlayerTitle,
+    })
   }
 
-  componentWillUpdate(nextProps, nextState) {
-    // if (nextState.open == true && this.state.open == false) {
-    //   this.props.onWillOpen();
-    // }
-    console.log('COMPOENET WILL UPDATE', nextProps.AudioPlaying)
+  componentDidUpdate(nextProps, nextState) {
 
-    let audio = document.getElementById('audio')
+    if (this.state.currentTrackTitle != this.props.AudioPlayerTitle) {
+      // LOAD NEW TRACK.. If What we've currently got, is
+      // different then the track set in the redux store.
+      this._loadAudio()
+      this.setState({
+        currentTrackTitle: this.props.AudioPlayerTitle,
+      })
 
-
-    if (nextProps.AudioPlaying) {
-      audio.play()
-    } else {
-      audio.pause()
     }
+
+    if (this.props.AudioPaused) {
+      // Audio is playing, this current title. Let's pause it.
+      this._handlePause()
+    }
+
+    if (
+      !this.props.AudioPaused &&
+      this.props.AudioPlaying &&
+      this.state.currentTrackTitle === this.props.AudioPlayerTitle
+    ) {
+      this._handleResume()
+    }
+
   }
 
-  _togglePlay() {
+  _loadAudio() {
     let audio = document.getElementById('audio')
+    audio.load()
+    audio.play()
+  }
 
+  _handlePause() {
+    let audio = document.getElementById('audio')
+    audio.pause()
+  }
+
+  _handleResume() {
+    let audio = document.getElementById('audio')
+    audio.play()
+  }
+
+  _handleTrackState() {
     if (this.props.AudioPlaying) {
-      audio.pause()
+      this.props.pauseAudio()
     } else {
-      audio.play()
+      this.props.resumeAudio()
     }
-
-    this.props.togglePlay()
   }
 
   render() {
+    let PlayerIcon = this.props.AudioPlaying
+      ? 'images/icons/pause.png'
+      : 'images/icons/play-button.png'
+
+
     return (
       <div className="article-preview stab30Player">
         <div className="article-preview__overlay" />
@@ -83,22 +106,14 @@ class AudioPlayer extends React.Component {
           </div>
 
           <div
-            onClick={() => this._togglePlay()}
+            onClick={() => this._handleTrackState()}
             className="w-40p fx-end hover"
           >
-            {this.props.AudioPlaying ? (
-              <img
-                className="icon-lg"
-                src={withPrefix('images/icons/pause.png')}
-                alt="PLAY"
-              />
-            ) : (
-              <img
-                className="icon-lg"
-                src={withPrefix('images/icons/play-button.png')}
-                alt="PAUSE"
-              />
-            )}
+            <img
+              className="icon-lg"
+              src={withPrefix(`${PlayerIcon}`)}
+              alt="PLAY"
+            />
           </div>
         </div>
       </div>
@@ -113,6 +128,7 @@ const mapStateToProps = ({
   AudioPlayerImageURL,
   AudioPlayerTitle,
   AudioPlayerPersonRank,
+  AudioPaused,
 }) => {
   return {
     count,
@@ -121,6 +137,7 @@ const mapStateToProps = ({
     AudioPlayerImageURL,
     AudioPlayerTitle,
     AudioPlayerPersonRank,
+    AudioPaused,
   }
 }
 
@@ -130,10 +147,8 @@ const mapDispatchToProps = dispatch => {
       dispatch({
         type: `INCREMENT`,
       }),
-    togglePlay: () =>
-      dispatch({
-        type: `TOGGLE_PLAY`,
-      }),
+    pauseAudio: () => dispatch({ type: `PAUSE_AUDIO` }),
+    resumeAudio: () => dispatch({ type: `RESUME_AUDIO` }),
   }
 }
 

@@ -128,6 +128,7 @@ export const pageQuery = graphql`
           title
           slug
           rank
+          audioFile
           heroImage {
             file {
               url

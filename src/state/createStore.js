@@ -8,14 +8,13 @@ const reducer = (state, action) => {
     });
   }
 
-  if (action.type === `TOGGLE_PLAY`) {
-    return Object.assign({}, state, {
-      AudioPlaying: !state.AudioPlaying
-    });
-  }
 
-  if (action.type === `SET_AUDIO`) {
+  if (action.type === `PLAY_NEW_AUDIO`) {
+
+    console.log("ACTION -> PLAY_NEW_AUDIO")
     return Object.assign({}, state, {
+      AudioPlaying: true,
+      AudioPaused: false,
       AudioPlayerFile: action.file,
       AudioPlayerTitle: action.title,
       AudioPlayerImageURL: action.image,
@@ -23,7 +22,21 @@ const reducer = (state, action) => {
     });
   }
 
+  if ( action.type === `PAUSE_AUDIO` ) {
+      console.log("ACTION -> PAUSE_AUDIO")
+    return Object.assign({}, state, {
+      AudioPaused: true,
+      AudioPlaying: false
+    })
+  }
 
+  if ( action.type === `RESUME_AUDIO` ) {
+  console.log("ACTION -> RESUME_AUDIO")
+    return Object.assign({}, state, {
+      AudioPaused: false,
+      AudioPlaying: true
+    })
+  }
 
   return state;
 };
@@ -32,7 +45,8 @@ const reducer = (state, action) => {
 const initialState = {
   count: 0,
   AudioPlayerFile: false,
-  AudioPlaying: false ,
+  AudioPlaying: false,
+  AudioPaused: false,
   AudioPlayerImageURL: '',
   AudioPlayerTitle: 'Test Track Title',
   AudioPlayerPersonRank: '',
