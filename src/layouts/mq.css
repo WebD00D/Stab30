@@ -1,4 +1,4 @@
-@media (min-width: 1100px) {
+@media (min-width: 900px) {
 
   .hide_dt {
     display: none !important;
@@ -70,7 +70,7 @@
 }
 
 
-@media ( max-width: 1099px) {
+@media ( max-width: 899px) {
   .hide_mb {
     display: none;
   }

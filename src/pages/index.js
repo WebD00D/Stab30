@@ -37,7 +37,7 @@ class RootIndex extends React.Component {
 
     console.log(isHomepage, window.innerWidth)
 
-    if ( isHomepage && window.innerWidth > 1099  ) {
+    if ( isHomepage && window.innerWidth > 899  ) {
       this.setState({
         redirect: true
       })
