@@ -4,9 +4,8 @@ import get from 'lodash/get'
 import Helmet from 'react-helmet'
 import Hero from '../components/hero'
 import ArticlePreview from '../components/article-preview'
-import { connect } from "react-redux";
+import { connect } from 'react-redux'
 import _ from 'lodash'
-
 
 class PeopleList extends React.Component {
   constructor(props) {
@@ -23,10 +22,7 @@ class PeopleList extends React.Component {
   }
 
   componentWillMount() {
-
     const posts = this.props.people
-
-    console.log("PEOPLE POSTS", posts)
 
     this.timer = null
 
@@ -68,10 +64,8 @@ class PeopleList extends React.Component {
   render() {
     const posts = this.props.people
 
-
     return (
       <div>
-
         <div className="page-wrap">
           <div className="container">
             <div className="search-box">
@@ -91,39 +85,37 @@ class PeopleList extends React.Component {
           </div>
 
           <div className="people-list-wrap">
-          {this.state.filteredPosts.map(({ node }, idx) => {
-            let formattedIdx = node.rank < 10 ? `0${node.rank }` : node.rank
+            {this.state.filteredPosts.map(({ node }, idx) => {
+              let formattedIdx = node.rank < 10 ? `0${node.rank}` : node.rank
 
-            return (
-              <div className="container article-container" key={node.slug}>
-                <ArticlePreview article={node} nonFormattedIdx={idx} idx={formattedIdx} />
-              </div>
-            )
-          })}
-
+              return (
+                <div className="container article-container" key={node.slug}>
+                  <ArticlePreview
+                    article={node}
+                    nonFormattedIdx={idx}
+                    idx={formattedIdx}
+                  />
+                </div>
+              )
+            })}
           </div>
-
         </div>
-
       </div>
     )
   }
 }
 
-
-
 const mapStateToProps = ({ count }) => {
-  return { count };
-};
+  return { count }
+}
 
 const mapDispatchToProps = dispatch => {
   return {
-    
     increaseCount: () =>
       dispatch({
-        type: `INCREMENT`
-      })
-  };
-};
+        type: `INCREMENT`,
+      }),
+  }
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(PeopleList);
+export default connect(mapStateToProps, mapDispatchToProps)(PeopleList)

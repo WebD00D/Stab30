@@ -16,8 +16,21 @@ const reducer = (state, action) => {
       AudioPlayerFile: action.file,
       AudioPlayerTitle: action.title,
       AudioPlayerImageURL: action.image,
-      AudioPlayerPersonRank: action.rank
+      AudioPlayerPersonRank: action.rank,
+      initialAudioLoad: false,
+
     });
+  }
+
+  if ( action.type === `SET_INITIAL_AUDIO` ) {
+    return Object.assign({}, state, {
+      AudioPlaying: false,
+      AudioPaused: true,
+      AudioPlayerFile: action.file,
+      AudioPlayerTitle: action.title,
+      AudioPlayerImageURL: action.image,
+      AudioPlayerPersonRank: action.rank
+    })
   }
 
   if ( action.type === `PAUSE_AUDIO` ) {
@@ -53,6 +66,7 @@ const initialState = {
   AudioPlayerTitle: 'Test Track Title',
   AudioPlayerPersonRank: '',
   activeIndex: null,
+  initialAudioLoad: true,
 };
 
 // https://s3-us-west-2.amazonaws.com/s.cdpn.io/355309/Swing_Jazz_Drum.mp3

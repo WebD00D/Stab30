@@ -17,12 +17,12 @@ class AudioPlayer extends React.Component {
   }
 
   componentDidMount() {
-
     // Player is mounting for the first time due to a request
     // to play audio.  This should only happen once during usage,
     // or every new refreshed visit.
-    this._loadAudio()
-
+    if (!this.props.initialAudioLoad) {
+      this._loadAudio()
+    }
     this.setState({
       currentTrackTitle: this.props.AudioPlayerTitle,
     })
@@ -130,6 +130,7 @@ const mapStateToProps = ({
   AudioPlayerTitle,
   AudioPlayerPersonRank,
   AudioPaused,
+  initialAudioLoad
 }) => {
   return {
     count,
@@ -139,6 +140,7 @@ const mapStateToProps = ({
     AudioPlayerTitle,
     AudioPlayerPersonRank,
     AudioPaused,
+    initialAudioLoad
   }
 }
 

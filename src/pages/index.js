@@ -4,55 +4,45 @@ import get from 'lodash/get'
 import Helmet from 'react-helmet'
 import Hero from '../components/hero'
 import ArticlePreview from '../components/article-preview'
-import { connect } from "react-redux";
-import _ from 'lodash';
-import { Redirect } from "react-router-dom";
-
+import { connect } from 'react-redux'
+import _ from 'lodash'
+import { Redirect } from 'react-router-dom'
 
 import Navigation from '../components/navigation'
-import PeopleList from "../components/PeopleList";
-
+import PeopleList from '../components/PeopleList'
 
 class RootIndex extends React.Component {
   constructor(props) {
     super(props)
 
-    this._handleWindowResize = this._handleWindowResize.bind(this);
+    this._handleWindowResize = this._handleWindowResize.bind(this)
 
     this.state = {
-      redirect: false
+      redirect: false,
     }
   }
 
   componentDidMount() {
-
-    this._handleWindowResize();
-    window.addEventListener("resize", this._handleWindowResize);
-
+    this._handleWindowResize()
+    window.addEventListener('resize', this._handleWindowResize)
   }
 
   _handleWindowResize() {
+    const isHomepage = location.pathname === withPrefix('/')
 
-    const isHomepage = location.pathname === withPrefix("/");
-
-    console.log(isHomepage, window.innerWidth)
-
-    if ( isHomepage && window.innerWidth > 899  ) {
+    if (isHomepage && window.innerWidth > 899) {
       this.setState({
-        redirect: true
+        redirect: true,
       })
     }
-
-
   }
-
 
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
     const posts = get(this, 'props.data.allContentfulBlogPost.edges')
 
     if (this.state.redirect) {
-      return (<Redirect to="/list/1" /> )
+      return <Redirect to="/list/1" />
     }
 
     return (
@@ -65,21 +55,20 @@ class RootIndex extends React.Component {
   }
 }
 
-
 const mapStateToProps = ({ count, activeIndex }) => {
-  return { count, activeIndex };
-};
+  return { count, activeIndex }
+}
 
 const mapDispatchToProps = dispatch => {
   return {
     increaseCount: () =>
       dispatch({
-        type: `INCREMENT`
-      })
-  };
-};
+        type: `INCREMENT`,
+      }),
+  }
+}
 
-export default connect(mapStateToProps, mapDispatchToProps)(RootIndex);
+export default connect(mapStateToProps, mapDispatchToProps)(RootIndex)
 
 export const pageQuery = graphql`
   query HomeQuery {
