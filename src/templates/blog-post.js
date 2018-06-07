@@ -5,6 +5,11 @@ import get from 'lodash/get'
 import styles from './blog-post.module.css'
 import { connect } from 'react-redux'
 
+import PeopleList from "../components/PeopleList";
+import Navigation from '../components/navigation'
+
+
+
 class BlogPostTemplate extends React.Component {
   constructor(props) {
     super(props)
@@ -42,6 +47,11 @@ class BlogPostTemplate extends React.Component {
   }
 
   render() {
+
+
+    const allPosts = get(this.props, 'data.allContentfulBlogPost.edges');
+
+
     const post = get(this.props, 'data.contentfulBlogPost')
     const siteTitle = get(this.props, 'data.site.siteMetadata.title')
 
@@ -60,6 +70,15 @@ class BlogPostTemplate extends React.Component {
     return (
       <div>
         <Helmet title={`${post.title}`} />
+
+
+        <div className="blog-page__parent">
+
+        <div className="blog-post__nav hide_mb">
+         <Navigation />
+          <PeopleList people={allPosts} />
+        </div>
+
         <div className="post-wrapper">
           <div className="post-padding">
             <Link to="/">
@@ -70,13 +89,12 @@ class BlogPostTemplate extends React.Component {
               />
             </Link>
 
-            <div className="post__header-img__wrapper">
+            <div className="post__header-img__wrapper ">
               <img src={post.heroImage.file.url} className="post__header-img" />
               <div className="post__header-img__overlay" />
               <div className="fc-pink t-mono fw-700 f-32 rank">
                 {formattedRank}
               </div>
-
               <div
                 onClick={() => this._handlePlay()}
                 className="play-box hover"
@@ -89,19 +107,24 @@ class BlogPostTemplate extends React.Component {
               </div>
             </div>
 
+
+
             <h1 className="post-headline t-mono fc-blue t-upper fw-700 ls-2">
               {post.title}
             </h1>
             <div className="t-mono fc-grey f-12">Words by {post.wordsBy}</div>
 
             <div
-              className="blog-post__words t-serif"
+              className="blog-post__words t-mono"
               dangerouslySetInnerHTML={{
                 __html: post.body.childMarkdownRemark.html,
               }}
             />
           </div>
         </div>
+
+        </div>
+
       </div>
     )
   }
@@ -166,6 +189,26 @@ export const pageQuery = graphql`
       body {
         childMarkdownRemark {
           html
+        }
+      }
+    }
+    allContentfulBlogPost(sort: { fields: [rank], order: ASC }) {
+      edges {
+        node {
+          title
+          slug
+          rank
+          audioFile
+          heroImage {
+            file {
+              url
+            }
+          }
+          description {
+            childMarkdownRemark {
+              html
+            }
+          }
         }
       }
     }

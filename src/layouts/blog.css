@@ -5,6 +5,10 @@
   padding-bottom: 130px;
 }
 
+.post-wrapper--grey {
+  background-color: #F5F5F5;
+}
+
 .post-padding {
   padding-left: 30px;
   padding-right: 30px;
@@ -65,13 +69,28 @@
 
 .blog-post__words h2 {
   font-size: 18px;
-  color: #FF2986;
+  color: #ff2986;
   font-family: 'Roboto Mono', monospace;
   font-weight: 700;
   text-transform: uppercase;
 }
 
 .blog-post__words p {
-  line-height: 1.5;
+  line-height: 1.9;
   margin-bottom: 22px;
+}
+
+.blog-post__words li {
+  line-height: 1.9;
+  opacity: 0.4;
+  margin-bottom: 12px;
+}
+
+
+.post__header--desktop {
+
+}
+
+.post__header__img-dt {
+  position: relative;
 }

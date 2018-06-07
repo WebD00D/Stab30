@@ -5,7 +5,7 @@ import { connect } from 'react-redux'
 import './base.css';
 
 import Container from '../components/container'
-import Navigation from '../components/navigation'
+
 import AudioPlayer from "../components/audioPlayer";
 
 
@@ -21,7 +21,7 @@ class Template extends React.Component {
 
     return (
       <div>
-        <Navigation />
+
         {children()}
         {this.props.AudioPlayerFile ? <AudioPlayer /> : ""}
       </div>
