@@ -74,7 +74,7 @@ class PeopleList extends React.Component {
                   this._handleChange(e.target.value)
                 }}
                 type="text"
-                placeholder="Search for someone"
+                placeholder="..."
               />
               <img
                 className="icon-sm"
