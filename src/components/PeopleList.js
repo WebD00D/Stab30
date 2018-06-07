@@ -68,6 +68,7 @@ class PeopleList extends React.Component {
   render() {
     const posts = this.props.people
 
+
     return (
       <div>
 
@@ -92,9 +93,10 @@ class PeopleList extends React.Component {
           <div className="people-list-wrap">
           {this.state.filteredPosts.map(({ node }, idx) => {
             let formattedIdx = node.rank < 10 ? `0${node.rank }` : node.rank
+
             return (
               <div className="container article-container" key={node.slug}>
-                <ArticlePreview article={node} idx={formattedIdx} />
+                <ArticlePreview article={node} nonFormattedIdx={idx} idx={formattedIdx} />
               </div>
             )
           })}
@@ -116,6 +118,7 @@ const mapStateToProps = ({ count }) => {
 
 const mapDispatchToProps = dispatch => {
   return {
+    
     increaseCount: () =>
       dispatch({
         type: `INCREMENT`

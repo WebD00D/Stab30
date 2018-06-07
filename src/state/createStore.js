@@ -10,8 +10,6 @@ const reducer = (state, action) => {
 
 
   if (action.type === `PLAY_NEW_AUDIO`) {
-
-    console.log("ACTION -> PLAY_NEW_AUDIO")
     return Object.assign({}, state, {
       AudioPlaying: true,
       AudioPaused: false,
@@ -23,7 +21,6 @@ const reducer = (state, action) => {
   }
 
   if ( action.type === `PAUSE_AUDIO` ) {
-      console.log("ACTION -> PAUSE_AUDIO")
     return Object.assign({}, state, {
       AudioPaused: true,
       AudioPlaying: false
@@ -31,10 +28,15 @@ const reducer = (state, action) => {
   }
 
   if ( action.type === `RESUME_AUDIO` ) {
-  console.log("ACTION -> RESUME_AUDIO")
     return Object.assign({}, state, {
       AudioPaused: false,
       AudioPlaying: true
+    })
+  }
+
+  if ( action.type === `SET_ACTIVE_INDEX` ) {
+    return Object.assign({}, state, {
+      activeIndex: action.idx,
     })
   }
 
@@ -50,6 +52,7 @@ const initialState = {
   AudioPlayerImageURL: '',
   AudioPlayerTitle: 'Test Track Title',
   AudioPlayerPersonRank: '',
+  activeIndex: null,
 };
 
 // https://s3-us-west-2.amazonaws.com/s.cdpn.io/355309/Swing_Jazz_Drum.mp3

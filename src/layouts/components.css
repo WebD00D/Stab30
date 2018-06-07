@@ -4,6 +4,20 @@
   display: flex;
   align-items: center;
   margin-bottom: 22px;
+  transition: .4s ease;
+}
+
+.article-preview:hover {
+  background-color: rgba(80,0,255,0.1);
+}
+
+
+.stab30Player:hover {
+  background-color: #5000ff;
+}
+
+.article-preview--active {
+  background-color: rgba(80,0,255,0.1);
 }
 
 .article-preview__image {

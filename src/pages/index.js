@@ -5,10 +5,11 @@ import Helmet from 'react-helmet'
 import Hero from '../components/hero'
 import ArticlePreview from '../components/article-preview'
 import { connect } from "react-redux";
-import _ from 'lodash'
+import _ from 'lodash';
+import { Redirect } from "react-router-dom";
+
 
 import Navigation from '../components/navigation'
-
 
 import PeopleList from "../components/PeopleList";
 
@@ -17,13 +18,54 @@ class RootIndex extends React.Component {
   constructor(props) {
     super(props)
 
+    this._handleWindowResize = this._handleWindowResize.bind(this);
+
+    this.state = {
+      redirect: false
+    }
+  }
+
+  componentDidMount() {
+
+    window.addEventListener("resize", this._handleWindowResize);
 
   }
+
+  _handleWindowResize() {
+
+
+    const isHomepage = location.pathname === withPrefix("/");
+
+
+    console.log(isHomepage, window.innerWidth)
+
+
+    if ( isHomepage && window.innerWidth > 1099  ) {
+      this.setState({
+        redirect: true
+      })
+    }
+
+
+  }
+
 
 
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
     const posts = get(this, 'props.data.allContentfulBlogPost.edges')
+
+
+    if ( !this.props.activeIndex && window.innerWidth > 1099 ) {
+      return (
+        <Redirect to="/list/1" />
+      )
+    }
+
+    if ( this.state.redirect  ) {
+      return (<Redirect to="/list/1" /> )
+    }
+
 
     return (
       <div>
@@ -36,8 +78,8 @@ class RootIndex extends React.Component {
 }
 
 
-const mapStateToProps = ({ count }) => {
-  return { count };
+const mapStateToProps = ({ count, activeIndex }) => {
+  return { count, activeIndex };
 };
 
 const mapDispatchToProps = dispatch => {

@@ -1,14 +1,12 @@
 import React from 'react'
 import Helmet from 'react-helmet'
-import Link, { withPrefix } from 'gatsby-link'
+import Link,  { withPrefix } from 'gatsby-link'
 import get from 'lodash/get'
 import styles from './blog-post.module.css'
 import { connect } from 'react-redux'
 
-import PeopleList from "../components/PeopleList";
+import PeopleList from '../components/PeopleList'
 import Navigation from '../components/navigation'
-
-
 
 class BlogPostTemplate extends React.Component {
   constructor(props) {
@@ -19,6 +17,11 @@ class BlogPostTemplate extends React.Component {
     this.state = {
       playing: false,
     }
+  }
+
+  componentDidMount() {
+    const post = get(this.props, 'data.contentfulBlogPost')
+    this.props.setActiveIndex(post.rank - 1)
   }
 
   _handlePlay() {
@@ -47,12 +50,10 @@ class BlogPostTemplate extends React.Component {
   }
 
   render() {
-
-
-    const allPosts = get(this.props, 'data.allContentfulBlogPost.edges');
-
+    const allPosts = get(this.props, 'data.allContentfulBlogPost.edges')
 
     const post = get(this.props, 'data.contentfulBlogPost')
+
     const siteTitle = get(this.props, 'data.site.siteMetadata.title')
 
     let formattedRank = post.rank < 10 ? `0${post.rank}` : post.rank
@@ -71,60 +72,57 @@ class BlogPostTemplate extends React.Component {
       <div>
         <Helmet title={`${post.title}`} />
 
-
         <div className="blog-page__parent">
+          <div className="blog-post__nav hide_mb">
+            <Navigation />
+            <PeopleList people={allPosts} />
+          </div>
 
-        <div className="blog-post__nav hide_mb">
-         <Navigation />
-          <PeopleList people={allPosts} />
-        </div>
-
-        <div className="post-wrapper">
-          <div className="post-padding">
-            <Link to="/">
-              <img
-                className="blog-post-back"
-                src={withPrefix('images/icons/arrow-right-purple.png')}
-                alt="Logo"
-              />
-            </Link>
-
-            <div className="post__header-img__wrapper ">
-              <img src={post.heroImage.file.url} className="post__header-img" />
-              <div className="post__header-img__overlay" />
-              <div className="fc-pink t-mono fw-700 f-32 rank">
-                {formattedRank}
-              </div>
-              <div
-                onClick={() => this._handlePlay()}
-                className="play-box hover"
-              >
+          <div className="post-wrapper">
+            <div className="post-padding post-alignment">
+              <Link to="/">
                 <img
-                  className="icon-lg"
-                  src={withPrefix(`${PlayerIcon}`)}
-                  alt="PLAYER BTN"
+                  className="blog-post-back"
+                  src={withPrefix('images/icons/arrow-right-purple.png')}
+                  alt="Logo"
                 />
+              </Link>
+
+              <div className="post__header-img__wrapper ">
+                <img
+                  src={post.heroImage.file.url}
+                  className="post__header-img"
+                />
+                <div className="post__header-img__overlay" />
+                <div className="fc-pink t-mono fw-700 f-32 rank">
+                  {formattedRank}
+                </div>
+                <div
+                  onClick={() => this._handlePlay()}
+                  className="play-box hover"
+                >
+                  <img
+                    className="icon-lg"
+                    src={withPrefix(`${PlayerIcon}`)}
+                    alt="PLAYER BTN"
+                  />
+                </div>
               </div>
+
+              <h1 className="post-headline t-mono fc-blue t-upper fw-700 ls-2">
+                {post.title}
+              </h1>
+              <div className="t-mono fc-grey f-12">Words by {post.wordsBy}</div>
+
+              <div
+                className="blog-post__words t-mono"
+                dangerouslySetInnerHTML={{
+                  __html: post.body.childMarkdownRemark.html,
+                }}
+              />
             </div>
-
-
-
-            <h1 className="post-headline t-mono fc-blue t-upper fw-700 ls-2">
-              {post.title}
-            </h1>
-            <div className="t-mono fc-grey f-12">Words by {post.wordsBy}</div>
-
-            <div
-              className="blog-post__words t-mono"
-              dangerouslySetInnerHTML={{
-                __html: post.body.childMarkdownRemark.html,
-              }}
-            />
           </div>
         </div>
-
-        </div>
-
       </div>
     )
   }
@@ -155,6 +153,12 @@ const mapDispatchToProps = dispatch => {
     increaseCount: () =>
       dispatch({
         type: `INCREMENT`,
+      }),
+
+    setActiveIndex: idx =>
+      dispatch({
+        type: `SET_ACTIVE_INDEX`,
+        idx: idx,
       }),
 
     pauseAudio: () => dispatch({ type: `PAUSE_AUDIO` }),
