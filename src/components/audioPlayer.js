@@ -85,6 +85,10 @@ class AudioPlayer extends React.Component {
       : 'images/icons/play-button.png'
 
 
+      let audio = document.getElementById('audio')
+      console.log("AUDIO", audio.duration)
+
+
     return (
       <div className="article-preview stab30Player">
         <div className="article-preview__overlay" />
@@ -94,10 +98,10 @@ class AudioPlayer extends React.Component {
         />
         <div className="article-preview__content">
           <div className="fx-row">
-            <div className="w-40p fc-white t-mono fw-700 f-12">
+            <div className="w-40p fc-white t-mono fw-700 f-12 f-18-dt">
               {this.props.AudioPlayerPersonRank}
             </div>
-            <div className="fc-white t-upper ls-2 t-mono fw-700 f-12 m-r-12">
+            <div className="fc-white t-upper ls-2 t-mono fw-700 f-12 m-r-12 f-18-dt">
               {this.props.AudioPlayerTitle}
               <audio loop id="audio">
                 <source src={this.props.AudioPlayerFile} />

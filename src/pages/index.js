@@ -10,7 +10,6 @@ import { Redirect } from "react-router-dom";
 
 
 import Navigation from '../components/navigation'
-
 import PeopleList from "../components/PeopleList";
 
 
@@ -27,18 +26,16 @@ class RootIndex extends React.Component {
 
   componentDidMount() {
 
+    this._handleWindowResize();
     window.addEventListener("resize", this._handleWindowResize);
 
   }
 
   _handleWindowResize() {
 
-
     const isHomepage = location.pathname === withPrefix("/");
 
-
     console.log(isHomepage, window.innerWidth)
-
 
     if ( isHomepage && window.innerWidth > 1099  ) {
       this.setState({
@@ -50,22 +47,13 @@ class RootIndex extends React.Component {
   }
 
 
-
   render() {
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
     const posts = get(this, 'props.data.allContentfulBlogPost.edges')
 
-
-    if ( !this.props.activeIndex && window.innerWidth > 1099 ) {
-      return (
-        <Redirect to="/list/1" />
-      )
-    }
-
-    if ( this.state.redirect  ) {
+    if (this.state.redirect) {
       return (<Redirect to="/list/1" /> )
     }
-
 
     return (
       <div>

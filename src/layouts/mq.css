@@ -4,8 +4,6 @@
     display: none !important;
   }
 
-
-
   .blog-page__parent {
     display: flex;
   }
@@ -62,6 +60,10 @@
 
   .post__header-img {
 
+  }
+
+  .f-18-dt {
+    font-size: 18px;
   }
 
 
