@@ -85,9 +85,6 @@ class AudioPlayer extends React.Component {
       : 'images/icons/play-button.png'
 
 
-      let audio = document.getElementById('audio')
-      console.log("AUDIO", audio.duration)
-
 
     return (
       <div className="article-preview stab30Player">
