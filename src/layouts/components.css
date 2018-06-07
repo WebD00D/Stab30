@@ -48,11 +48,10 @@
 }
 
 
-
-
 /* AUDIO PLAYER */
 
 .stab30Player {
+  height: 100px;
   width: 100%;
   position: fixed;
   z-index: 2;
@@ -64,8 +63,16 @@
   box-shadow: 0px 4px 25px 1px rgba(0, 0, 0, 0.75);
 }
 
-.player-art-wrap {
+.stab30Player .article-preview__image,
+.stab30Platyer .article-preview__overlay {
+  height: 100px;
+  width: 100px;
+  min-height: 100px;
+  min-width: 100px;
+}
 
+
+.player-art-wrap {
   width: 100px;
   height: 100%;
   background-color: #252525;

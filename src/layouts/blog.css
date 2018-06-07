@@ -54,6 +54,7 @@
 .rank {
   position: absolute;
   bottom: -60px;
+  font-size: 100px
 }
 
 .blog-post-back {
@@ -65,6 +66,7 @@
 .post-headline {
   padding: 0px;
   margin-top: 60px;
+  font-size: 60px;
 }
 
 .blog-post__words h2 {

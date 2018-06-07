@@ -33,7 +33,7 @@ class About extends React.Component {
           </div>
 
           <div className="post-wrapper m-t-130-mb">
-            <div className="post-padding">
+            <div className="post-padding post-alignment">
               <h1 className=" t-mono fc-blue t-upper fw-700 ls-2">About</h1>
 
               <div className="blog-post__words t-mono">
