@@ -88,8 +88,6 @@ class BlogPostTemplate extends React.Component {
       PlayerIcon = 'images/icons/play-button.png'
     }
 
-    let page = window.location.href;
-
     return (
       <div>
         <Helmet title={`${post.title}`} />
@@ -137,25 +135,25 @@ class BlogPostTemplate extends React.Component {
               <div className="t-mono fc-grey f-12">Words by {post.wordsBy}</div>
 
               <div className="social-share-bar">
-                <FacebookShareButton className="hover outline-none hover-fade social-share" url={`http://www.stab30.com/list/${post.rank}`}>
+                <FacebookShareButton className="hover outline-none hover-fade social-share" url={`http://www.stab30.com/list/${post.slug}`}>
                   <FacebookIcon  size={32} round={true} iconBgStyle={{fill: '#5000ff'}}/>
                 </FacebookShareButton>
-                <GooglePlusShareButton className="hover outline-none hover-fade social-share" url={`http://www.stab30.com/list/${post.rank}`}>
+                <GooglePlusShareButton className="hover outline-none hover-fade social-share" url={`http://www.stab30.com/list/${post.slug}`}>
                   <GooglePlusIcon  size={32} round={true} iconBgStyle={{fill: '#5000ff'}}/>
                 </GooglePlusShareButton>
-                <TwitterShareButton className="hover outline-none hover-fade social-share" url={`http://www.stab30.com/list/${post.rank}`}>
+                <TwitterShareButton className="hover outline-none hover-fade social-share" url={`http://www.stab30.com/list/${post.slug}`}>
                   <TwitterIcon  size={32} round={true} iconBgStyle={{fill: '#5000ff'}}/>
                 </TwitterShareButton>
-                <PinterestShareButton className="hover outline-none hover-fade social-share" media={post.heroImage.file.url} url={`http://www.stab30.com/list/${post.rank}`}>
+                <PinterestShareButton className="hover outline-none hover-fade social-share" media={post.heroImage.file.url} url={`http://www.stab30.com/list/${post.slug}`}>
                   <PinterestIcon  size={32} round={true} iconBgStyle={{fill: '#5000ff'}}/>
                 </PinterestShareButton>
-                <RedditShareButton className="hover outline-none hover-fade social-share" media={post.heroImage.file.url} url={`http://www.stab30.com/list/${post.rank}`}>
+                <RedditShareButton className="hover outline-none hover-fade social-share" media={post.heroImage.file.url} url={`http://www.stab30.com/list/${post.slug}`}>
                   <RedditIcon  size={32} round={true} iconBgStyle={{fill: '#5000ff'}}/>
                 </RedditShareButton>
-                <TumblrShareButton className="hover outline-none hover-fade social-share" media={post.heroImage.file.url} url={`http://www.stab30.com/list/${post.rank}`}>
+                <TumblrShareButton className="hover outline-none hover-fade social-share" media={post.heroImage.file.url} url={`http://www.stab30.com/list/${post.slug}`}>
                   <TumblrIcon  size={32} round={true} iconBgStyle={{fill: '#5000ff'}}/>
                 </TumblrShareButton>
-                <EmailShareButton className="hover outline-none hover-fade social-share" media={post.heroImage.file.url} url={`http://www.stab30.com/list/${post.rank}`}>
+                <EmailShareButton className="hover outline-none hover-fade social-share" media={post.heroImage.file.url} url={`http://www.stab30.com/list/${post.slug}`}>
                   <EmailIcon  size={32} round={true} iconBgStyle={{fill: '#5000ff'}}/>
                 </EmailShareButton>
               </div>
