@@ -73,7 +73,6 @@ class BlogPostTemplate extends React.Component {
     const allPosts = get(this.props, 'data.allContentfulBlogPost.edges')
 
     const post = get(this.props, 'data.contentfulBlogPost')
-
     const siteTitle = get(this.props, 'data.site.siteMetadata.title')
 
     let formattedRank = post.rank < 10 ? `0${post.rank}` : post.rank
@@ -134,6 +133,13 @@ class BlogPostTemplate extends React.Component {
               </h1>
               <div className="t-mono fc-grey f-12">Words by {post.wordsBy}</div>
 
+              <div
+                className="blog-post__words t-mono"
+                dangerouslySetInnerHTML={{
+                  __html: post.body.childMarkdownRemark.html,
+                }}
+              />
+
               <div className="social-share-bar">
                 <FacebookShareButton className="hover outline-none hover-fade social-share" url={`http://www.stab30.com/list/${post.slug}`}>
                   <FacebookIcon  size={32} round={true} iconBgStyle={{fill: '#5000ff'}}/>
@@ -157,14 +163,9 @@ class BlogPostTemplate extends React.Component {
                   <EmailIcon  size={32} round={true} iconBgStyle={{fill: '#5000ff'}}/>
                 </EmailShareButton>
               </div>
-
-              <div
-                className="blog-post__words t-mono"
-                dangerouslySetInnerHTML={{
-                  __html: post.body.childMarkdownRemark.html,
-                }}
-              />
             </div>
+
+
           </div>
         </div>
       </div>
