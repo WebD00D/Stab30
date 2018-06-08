@@ -91,3 +91,15 @@
   width: 40px;
   min-width: 40px;
 }
+
+.outline-none {
+  outline: none;
+}
+
+.hover-fade {
+  transition: .2s ease;
+}
+
+.hover-fade:hover {
+  opacity: 0.8;
+}

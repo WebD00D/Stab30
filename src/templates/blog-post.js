@@ -5,6 +5,26 @@ import get from 'lodash/get'
 import styles from './blog-post.module.css'
 import { connect } from 'react-redux'
 
+import {
+  FacebookShareButton,
+  GooglePlusShareButton,
+  TwitterShareButton,
+  PinterestShareButton,
+  RedditShareButton,
+  TumblrShareButton,
+  EmailShareButton,
+} from 'react-share';
+
+import {
+  FacebookIcon,
+  TwitterIcon,
+  GooglePlusIcon,
+  PinterestIcon,
+  RedditIcon,
+  TumblrIcon,
+  EmailIcon,
+} from 'react-share';
+
 import PeopleList from '../components/PeopleList'
 import Navigation from '../components/navigation'
 
@@ -68,6 +88,8 @@ class BlogPostTemplate extends React.Component {
       PlayerIcon = 'images/icons/play-button.png'
     }
 
+    let page = window.location.href;
+
     return (
       <div>
         <Helmet title={`${post.title}`} />
@@ -113,6 +135,30 @@ class BlogPostTemplate extends React.Component {
                 {post.title}
               </h1>
               <div className="t-mono fc-grey f-12">Words by {post.wordsBy}</div>
+
+              <div className="social-share-bar">
+                <FacebookShareButton className="hover outline-none hover-fade social-share" url={`http://www.stab30.com/list/${post.rank}`}>
+                  <FacebookIcon  size={32} round={true} iconBgStyle={{fill: '#5000ff'}}/>
+                </FacebookShareButton>
+                <GooglePlusShareButton className="hover outline-none hover-fade social-share" url={`http://www.stab30.com/list/${post.rank}`}>
+                  <GooglePlusIcon  size={32} round={true} iconBgStyle={{fill: '#5000ff'}}/>
+                </GooglePlusShareButton>
+                <TwitterShareButton className="hover outline-none hover-fade social-share" url={`http://www.stab30.com/list/${post.rank}`}>
+                  <TwitterIcon  size={32} round={true} iconBgStyle={{fill: '#5000ff'}}/>
+                </TwitterShareButton>
+                <PinterestShareButton className="hover outline-none hover-fade social-share" media={post.heroImage.file.url} url={`http://www.stab30.com/list/${post.rank}`}>
+                  <PinterestIcon  size={32} round={true} iconBgStyle={{fill: '#5000ff'}}/>
+                </PinterestShareButton>
+                <RedditShareButton className="hover outline-none hover-fade social-share" media={post.heroImage.file.url} url={`http://www.stab30.com/list/${post.rank}`}>
+                  <RedditIcon  size={32} round={true} iconBgStyle={{fill: '#5000ff'}}/>
+                </RedditShareButton>
+                <TumblrShareButton className="hover outline-none hover-fade social-share" media={post.heroImage.file.url} url={`http://www.stab30.com/list/${post.rank}`}>
+                  <TumblrIcon  size={32} round={true} iconBgStyle={{fill: '#5000ff'}}/>
+                </TumblrShareButton>
+                <EmailShareButton className="hover outline-none hover-fade social-share" media={post.heroImage.file.url} url={`http://www.stab30.com/list/${post.rank}`}>
+                  <EmailIcon  size={32} round={true} iconBgStyle={{fill: '#5000ff'}}/>
+                </EmailShareButton>
+              </div>
 
               <div
                 className="blog-post__words t-mono"
