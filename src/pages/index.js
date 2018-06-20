@@ -42,7 +42,7 @@ class RootIndex extends React.Component {
     const posts = get(this, 'props.data.allContentfulBlogPost.edges')
 
     if (this.state.redirect) {
-      return <Redirect to="/list/1" />
+      return <Redirect to="/list/kai-lenny" />
     }
 
     return (
