@@ -134,7 +134,7 @@ class Signup extends React.Component {
                       this._handleChange(e.target.value, 'phone')
                     }}
                     ref={(ref) => this.phoneRef = ref}
-                    type="text"
+                    type="number"
                     placeholder="..."
                   />
                   <img
