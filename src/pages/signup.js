@@ -16,11 +16,10 @@ class Signup extends React.Component {
 
     this._handleChange = this._handleChange.bind(this)
     this._handleFormSubmission = this._handleFormSubmission.bind(this)
-    this._resetForm = this._resetForm.bind(this);
+    this._resetForm = this._resetForm.bind(this)
 
-    this.emailRef;
-    this.phoneRef;
-
+    this.emailRef
+    this.phoneRef
 
     this.state = {
       email: '',
@@ -39,17 +38,14 @@ class Signup extends React.Component {
   }
 
   _resetForm() {
+    this.phoneRef.value = ''
+    this.emailRef.value = ''
 
-        this.phoneRef.value = ""
-        this.emailRef.value = ""
-
-      this.setState({
-          email: '',
-          phone: '',
-          message: '',
-      })
-
-
+    this.setState({
+      email: '',
+      phone: '',
+      message: '',
+    })
   }
 
   _handleFormSubmission() {
@@ -66,12 +62,14 @@ class Signup extends React.Component {
     fetch(url)
       .then(function(response) {
         return response
-      }).then(function(){
-        this.setState({
-            message: 'Email Added!'
-        })
-      }.bind(this))
-      
+      })
+      .then(
+        function() {
+          this.setState({
+            message: 'Email Added!',
+          })
+        }.bind(this)
+      )
   }
 
   _handleChange(value, field) {
@@ -108,8 +106,8 @@ class Signup extends React.Component {
 
               <div className="blog-post__words t-mono">
                 <p>
-                  Enter your email address, and phone number and we'll text you
-                  the Stab30 Audio link.
+                  Enter your email address and phone number to get the Stab30
+                  Audio link sent to your phone.
                 </p>
                 <h4 className="fc-pink">Email</h4>
                 <div className="search-box">
@@ -117,7 +115,7 @@ class Signup extends React.Component {
                     onChange={e => {
                       this._handleChange(e.target.value, 'email')
                     }}
-                    ref={(ref) => this.emailRef = ref}
+                    ref={ref => (this.emailRef = ref)}
                     type="text"
                     placeholder="..."
                   />
@@ -133,7 +131,7 @@ class Signup extends React.Component {
                     onChange={e => {
                       this._handleChange(e.target.value, 'phone')
                     }}
-                    ref={(ref) => this.phoneRef = ref}
+                    ref={ref => (this.phoneRef = ref)}
                     type="number"
                     placeholder="..."
                   />
@@ -143,23 +141,29 @@ class Signup extends React.Component {
                     alt="Logo"
                   />
                 </div>
-               
-               <div> <button
-                  onClick={() => this._handleFormSubmission()}
-                  className="submit-btn"
-                >
-                  Submit
-                </button></div>
 
-                <div> <button
-                  onClick={() => this._resetForm()}
-                  className="clear-form"
-                >
-                  Reset Form
-                </button></div>
-                <div className="t-mono fc-pink m-t-22">{this.state.message}</div>
+                <div>
+                  {' '}
+                  <button
+                    onClick={() => this._handleFormSubmission()}
+                    className="submit-btn"
+                  >
+                    Submit
+                  </button>
+                </div>
 
-
+                <div>
+                  {' '}
+                  <button
+                    onClick={() => this._resetForm()}
+                    className="clear-form"
+                  >
+                    Reset Form
+                  </button>
+                </div>
+                <div className="t-mono fc-pink m-t-22">
+                  {this.state.message}
+                </div>
               </div>
             </div>
           </div>
