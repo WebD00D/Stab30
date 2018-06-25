@@ -18,8 +18,8 @@ class Signup extends React.Component {
     this._handleFormSubmission = this._handleFormSubmission.bind(this)
     this._resetForm = this._resetForm.bind(this);
 
-    this.emailRef = React.createRef();
-    this.phoneRef = React.createRef();
+    this.emailRef;
+    this.phoneRef;
 
 
     this.state = {
