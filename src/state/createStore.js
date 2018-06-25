@@ -70,10 +70,13 @@ const initialState = {
 // https://s3-us-west-2.amazonaws.com/s.cdpn.io/355309/Swing_Jazz_Drum.mp3
 // 'https://s3-us-west-2.amazonaws.com/s.cdpn.io/557257/wwy.mp3
 
+// NOTE: We need to probably create a new account / bucket for storing the audio..
+// orrrrr.... we can store locally.
+
 const createStore = () =>
   reduxCreateStore(
     reducer,
     initialState
-    //window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+    // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
   )
 export default createStore

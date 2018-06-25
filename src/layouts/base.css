@@ -121,3 +121,32 @@ select:focus,
 textarea {
   font-size: 16px;
 }
+
+
+.submit-btn {
+  height: 30px;
+  border: none;
+  width: 200px;
+  background-color: #5000FF;
+  color: white;
+  font-family: 'Roboto Mono', monospace;
+  cursor: pointer;
+  transition: .2s ease;
+}
+
+.clear-form {
+  height: 30px;
+  border: none;
+  width: 200px;
+  background-color: #FFFFFF;
+  color: #5000FF;
+  border: 1px solid #5000FF;
+  font-family: 'Roboto Mono', monospace;
+  cursor: pointer;
+  margin-top: 18px;
+}
+
+button:hover {
+  opacity: 0.8;
+  transition: .2s ease;
+}

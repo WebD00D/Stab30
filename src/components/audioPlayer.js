@@ -26,6 +26,15 @@ class AudioPlayer extends React.Component {
     this.setState({
       currentTrackTitle: this.props.AudioPlayerTitle,
     })
+
+
+
+    if ( window.location.pathname === "/signup") {
+      const pageParent = document.getElementsByClassName('stab30Player')[0]
+      pageParent.style.display = 'none';
+
+    }
+
   }
 
   componentDidUpdate(nextProps, nextState) {
@@ -83,8 +92,6 @@ class AudioPlayer extends React.Component {
     let PlayerIcon = this.props.AudioPlaying
       ? 'images/icons/pause.png'
       : 'images/icons/play-button.png'
-
-
 
     return (
       <div className="article-preview stab30Player">
