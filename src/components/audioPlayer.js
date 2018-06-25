@@ -29,7 +29,7 @@ class AudioPlayer extends React.Component {
 
 
 
-    if ( window.location.pathname === "/signup") {
+    if ( window.location.pathname === "/signup/") {
       const pageParent = document.getElementsByClassName('stab30Player')[0]
       pageParent.style.display = 'none';
 
