@@ -7,6 +7,9 @@ import ArticlePreview from '../components/article-preview'
 import { connect } from 'react-redux'
 import _ from 'lodash'
 
+import 'whatwg-fetch';
+
+
 import Navigation from '../components/navigation'
 import PeopleList from '../components/PeopleList'
 
