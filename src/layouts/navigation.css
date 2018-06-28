@@ -13,8 +13,9 @@
   padding-left: 20px;
   padding-right: 20px;
   border-bottom: 2px solid #F5F5F5;
-  height: 70px;
+  height: 100px;
 }
+
 
 .logo {
   height: 60px;
@@ -42,6 +43,33 @@
 .logo-signup--agenda {
   height: 40px;
   width: auto;
+}
+
+.logo-signup--stab--main {
+  height: 100px;
+  width: auto;
+}
+
+.logo-signup--agenda--main {
+  height: 40px;
+  width: auto;
+}
+
+@media (max-width: 899px) {
+
+  .nav-wrapper {
+    height: 70px;
+    
+  }
+  .logo-signup--stab--main {
+    height: 60px;
+    width: auto;
+  }
+  
+  .logo-signup--agenda--main {
+    height: 20px;
+    width: auto;
+  }
 }
 
 @media ( max-width: 600px ) {

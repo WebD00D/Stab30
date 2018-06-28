@@ -4,19 +4,22 @@ import Link, { withPrefix } from 'gatsby-link'
 export default () => (
   <nav className="nav" role="navigation">
     <div className="nav-wrapper">
-      <img
-        className="logo"
-        src={withPrefix('images/stab30.png')}
-        alt="Logo"
-      />
-      <div className="nav-title">
-        <div className="t-mono fc-pink f-10 t-upper ls-2 fw-400">
-          A Stab x Agenda Joint
-        </div>
-        <div className="t-mono fc-blue f-18 t-upper ls-2 fw-700">
-          30 Under 30
-        </div>
-      </div>
+      
+      <div className="sponsored-logos">
+             <img
+                className="log logo-signup--stab--main"
+                src={withPrefix('images/stab30.png')}
+                alt="Logo"
+              />
+              <div className="t-mono presented-by">PRESENTED BY </div>
+             
+              <img
+                className="log logo-signup--agenda--main"
+                src={withPrefix('images/agenda.png')}
+                alt="Logo"
+              />
+              </div>
+      
     </div>
 
     

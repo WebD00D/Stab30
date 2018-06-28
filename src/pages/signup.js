@@ -104,7 +104,6 @@ class Signup extends React.Component {
             
 
               <div className="sponsored-logos">
-
              <img
                 className="log logo-signup--stab"
                 src={withPrefix('images/stab30.png')}
@@ -159,7 +158,7 @@ class Signup extends React.Component {
 
                 <div className="m-b-22">
                 <input onChange={()=> this.setState({ checked: !this.state.checked })} className="styled-checkbox" id="styled-checkbox-2" type="checkbox" value="value2" checked={this.state.checked} />
-                 <label htmlFor="styled-checkbox-2">Keep me up to date with Stab News, Events, and more.</label>
+                 <label htmlFor="styled-checkbox-2">Stay current with Stab news, events, and more by signing up for our newsletter</label>
                 </div>
 
                 <div>
