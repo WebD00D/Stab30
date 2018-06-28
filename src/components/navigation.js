@@ -1,5 +1,5 @@
 import React from 'react'
-import  Link, { withPrefix } from 'gatsby-link'
+import Link, { withPrefix } from 'gatsby-link'
 
 export default () => (
   <nav className="nav" role="navigation">
@@ -19,12 +19,6 @@ export default () => (
       </div>
     </div>
 
-    <div className="container bg-white">
-      <div className="nav-links">
-        <Link className="fc-pink t-mono f-12 t-upper ls-2 fw-700 hide_dt" to="/">The List</Link>
-        <Link className="fc-pink t-mono f-12 t-upper ls-2 fw-700" to="/about">About</Link>
-        <Link className="fc-pink t-mono f-12 t-upper ls-2 fw-700" to="/agenda">Agenda</Link>
-      </div>
-    </div>
+    
   </nav>
 )

@@ -26,6 +26,7 @@ class PeopleList extends React.Component {
 
     this.timer = null
 
+
     this.setState({
       allPosts: posts,
       filteredPosts: posts,
@@ -54,7 +55,9 @@ class PeopleList extends React.Component {
       return title.indexOf(valueToFilterBy.toUpperCase()) > -1
     })
 
-    let orderedList = _.sortBy(filtered, ['rank'])
+    let orderedList = filtered;
+
+    console.log(orderedList)
 
     this.setState({
       filteredPosts: orderedList,
@@ -63,10 +66,19 @@ class PeopleList extends React.Component {
 
   render() {
     const posts = this.props.people
-
+    
     return (
       <div>
         <div className="page-wrap">
+          <div className="container bg-white">
+            <div className="t-mono f-14 pv-18 lh-24p">
+              <div className="fc-pink"><b>We cordially invite you to meet Stab’s 30 under 30 - the Culture
+              Shifters of tomorrow.</b></div> These are the ladies and gentlemen who, from
+              an early age, shake (not stir!) the status quo. 30 individuals who
+              started in and transcended the surf bubble before journeying 30
+              times 'round the sun.
+            </div>
+          </div>
           <div className="container">
             <div className="search-box">
               <input

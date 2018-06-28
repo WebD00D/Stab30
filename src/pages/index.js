@@ -38,11 +38,13 @@ class RootIndex extends React.Component {
   }
 
   render() {
+
     const siteTitle = get(this, 'props.data.site.siteMetadata.title')
     const posts = get(this, 'props.data.allContentfulBlogPost.edges')
 
+    console.log(posts)
     if (this.state.redirect) {
-      return <Redirect to="/list/kai-lenny" />
+      return <Redirect to="/list/kita-alexander" />
     }
 
     return (
@@ -72,13 +74,20 @@ export default connect(mapStateToProps, mapDispatchToProps)(RootIndex)
 
 export const pageQuery = graphql`
   query HomeQuery {
-    allContentfulBlogPost(sort: { fields: [rank], order: ASC }) {
+    allContentfulBlogPost(sort: { fields: [rank], order: DESC }) {
       edges {
         node {
           title
           slug
           rank
           audioFile
+          age
+          field
+          audio {
+            file {
+              url
+            }
+          }
           heroImage {
             file {
               url

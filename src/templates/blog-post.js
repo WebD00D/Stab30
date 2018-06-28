@@ -42,6 +42,7 @@ class BlogPostTemplate extends React.Component {
   componentDidMount() {
     const post = get(this.props, 'data.contentfulBlogPost')
     this.props.setActiveIndex(post.rank - 1)
+console.log(post)
   }
 
   _handlePlay() {
@@ -51,7 +52,7 @@ class BlogPostTemplate extends React.Component {
       // Either no titleis set, or user is requesting a new title be played.
       let formattedRank = post.rank < 10 ? `0${post.rank}` : post.rank
       this.props.playNewAudio(
-        post.audioFile,
+        post.audio.file.url,
         post.title,
         post.heroImage.file.url,
         formattedRank
@@ -131,7 +132,8 @@ class BlogPostTemplate extends React.Component {
               <h1 className="post-headline t-mono fc-blue t-upper fw-700 ls-2">
                 {post.title}
               </h1>
-              <div className="t-mono fc-grey f-12">Words by {post.wordsBy}</div>
+              <div className="t-mono fc-grey f-12">Age: {post.age}</div>
+              <div className="t-mono fc-grey f-12">Field: {post.field}</div>
 
               <div
                 className="blog-post__words t-mono"
@@ -228,8 +230,16 @@ export const pageQuery = graphql`
     contentfulBlogPost(slug: { eq: $slug }) {
       title
       rank
+      slug
       wordsBy
-      audioFile
+      audioFile,
+      age,
+      field,
+      audio {
+        file {
+          url
+        }
+      }
       heroImage {
         file {
           url
@@ -241,13 +251,20 @@ export const pageQuery = graphql`
         }
       }
     }
-    allContentfulBlogPost(sort: { fields: [rank], order: ASC }) {
+    allContentfulBlogPost(sort: { fields: [rank], order: DESC }) {
       edges {
         node {
           title
           slug
           rank
+          age
+          field
           audioFile
+          audio {
+            file {
+              url
+            }
+          }
           heroImage {
             file {
               url

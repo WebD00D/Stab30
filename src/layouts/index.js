@@ -10,11 +10,11 @@ import AudioPlayer from '../components/audioPlayer'
 
 class Template extends React.Component {
   componentDidMount() {
-    const firstPost = get(this, 'props.data.allContentfulBlogPost.edges')[0]
+    const firstPost = get(this, 'props.data.allContentfulBlogPost.edges')[29]
       .node
 
     this.props.setInitialAudio(
-      firstPost.audioFile,
+      firstPost.audio.file.url,
       firstPost.title,
       firstPost.heroImage.file.url,
       firstPost.rank
@@ -88,6 +88,11 @@ export const pageQuery = graphql`
           slug
           rank
           audioFile
+          audio {
+            file {
+              url
+            }
+          }
           heroImage {
             file {
               url
