@@ -5,6 +5,17 @@ import { connect } from 'react-redux'
 class ArticlePreview extends React.Component {
   constructor(props) {
     super(props)
+
+    this.state = {
+      linkURL: ''
+    }
+  }
+
+  componentDidMount() {
+    let linkURL = window.innerWidth > 899 ? `/list/${this.props.article.slug}#${this.props.article.rank}` : `/list/${this.props.article.slug}`
+    this.setState({
+      linkURL
+    })
   }
 
   render() {
@@ -17,10 +28,9 @@ class ArticlePreview extends React.Component {
         : 'article-preview';
 
 
-    let linkURL = window.innerWidth > 899 ? `/list/${this.props.article.slug}#${this.props.article.rank}` : `/list/${this.props.article.slug}`
 
     return (
-      <Link id={this.props.article.rank} to={linkURL} className={previewClassName}>
+      <Link id={this.props.article.rank} to={this.state.linkURL} className={previewClassName}>
         <div className="article-preview__overlay" />
         <div
           className="article-preview__image"
