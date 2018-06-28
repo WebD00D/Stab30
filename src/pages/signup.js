@@ -108,8 +108,8 @@ class Signup extends React.Component {
 
               <div className="sponsored-logos">
              <img
-                className="log logo-signup--stab"
-                src={withPrefix('images/stab30.png')}
+                className="log logo-signup--stab--main"
+                src={withPrefix('images/stab30RGB.png')}
                 alt="Logo"
               />
               <div className="t-mono presented-by">PRESENTED BY </div>
