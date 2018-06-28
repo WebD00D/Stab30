@@ -41,9 +41,9 @@ class ArticlePreview extends React.Component {
         <div className="article-preview__content">
           <div className="fx-row">
             <div className="w-40p fc-pink t-mono fw-700 f-12 ">
-              {this.props.idx}
+              {this.props.idx === "01" ? this.props.idx : ""}
             </div>
-            <div className="fc-blue t-upper ls-2 t-mono fw-700 f-12 ">
+            <div className="fc-pink t-upper ls-2 t-mono fw-700 f-12 ">
               {this.props.article.title}
             </div>
           </div>

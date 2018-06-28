@@ -115,7 +115,8 @@ console.log(post)
                 />
                 <div className="post__header-img__overlay" />
                 <div className="fc-pink t-mono fw-700 f-32 rank">
-                  {formattedRank}
+
+                  {formattedRank === "01" ? formattedRank : ""}
                 </div>
                 <div
                   onClick={() => this._handlePlay()}
@@ -129,7 +130,7 @@ console.log(post)
                 </div>
               </div>
 
-              <h1 className="post-headline t-mono fc-blue t-upper fw-700 ls-2">
+              <h1 className="post-headline t-mono fc-pink t-upper fw-700 ls-2">
                 {post.title}
               </h1>
               <div className="t-mono fc-grey f-12">Age: {post.age}</div>
