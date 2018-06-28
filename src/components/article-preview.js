@@ -16,8 +16,11 @@ class ArticlePreview extends React.Component {
         ? 'article-preview article-preview--active'
         : 'article-preview';
 
+
+    let linkURL = window.innerWidth > 899 ? `/list/${this.props.article.slug}#${this.props.article.rank}` : `/list/${this.props.article.slug}`
+
     return (
-      <Link to={`/list/${this.props.article.slug}`} className={previewClassName}>
+      <Link id={this.props.article.rank} to={linkURL} className={previewClassName}>
         <div className="article-preview__overlay" />
         <div
           className="article-preview__image"

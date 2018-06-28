@@ -100,7 +100,7 @@ console.log(post)
 
           <div className="post-wrapper">
             <div className="post-padding post-alignment">
-              <Link to="/">
+              <Link to={`/#${post.rank + 1}`}>
                 <img
                   className="blog-post-back"
                   src={withPrefix('images/icons/arrow-right-purple.png')}

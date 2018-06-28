@@ -6,18 +6,18 @@ export default () => (
     <div className="nav-wrapper">
       
       <div className="sponsored-logos">
-             <img
+             <a target="_blank" href="https://www.stabmag.com"><img
                 className="log logo-signup--stab--main"
                 src={withPrefix('images/stab30.png')}
                 alt="Logo"
-              />
+              /></a>
               <div className="t-mono presented-by">PRESENTED BY </div>
              
-              <img
+              <a target="_blank" href="https://www.agendashow.com/"><img
                 className="log logo-signup--agenda--main"
                 src={withPrefix('images/agenda.png')}
                 alt="Logo"
-              />
+              /></a>
               </div>
       
     </div>
