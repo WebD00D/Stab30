@@ -25,6 +25,7 @@ class Signup extends React.Component {
       email: '',
       phone: '',
       message: '',
+      checked: true
     }
   }
 
@@ -100,9 +101,23 @@ class Signup extends React.Component {
             style={{ marginLeft: '0px' }}
           >
             <div className="post-padding post-alignment">
-              <h1 className=" t-mono fc-blue t-upper fw-700 ls-2">
-                STAB30 AUDIO EXPERIENCE
-              </h1>
+            
+
+              <div className="sponsored-logos">
+
+             <img
+                className="log logo-signup--stab"
+                src={withPrefix('images/stab30.png')}
+                alt="Logo"
+              />
+              <div className="t-mono presented-by">PRESENTED BY </div>
+             
+              <img
+                className="log logo-signup--agenda"
+                src={withPrefix('images/agenda.png')}
+                alt="Logo"
+              />
+              </div>
 
               <div className="blog-post__words t-mono">
                 <p>
@@ -140,6 +155,11 @@ class Signup extends React.Component {
                     src={withPrefix('images/icons/phone.png')}
                     alt="Logo"
                   />
+                </div>
+
+                <div className="m-b-22">
+                <input onChange={()=> this.setState({ checked: !this.state.checked })} className="styled-checkbox" id="styled-checkbox-2" type="checkbox" value="value2" checked={this.state.checked} />
+                 <label htmlFor="styled-checkbox-2">Keep me up to date with Stab News, Events, and more.</label>
                 </div>
 
                 <div>

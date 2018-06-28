@@ -17,8 +17,56 @@
 }
 
 .logo {
-  height: 20px;
+  height: 60px;
   width: auto;
+}
+
+.sponsored-logos {
+  display: flex;
+  align-items: center;
+  
+}
+
+.presented-by {
+  margin-left: 12px;
+  margin-right: 12px;
+  font-weight: bold;
+  font-size: 10px;
+}
+
+.logo-signup--stab {
+  height: 100px;
+  width: auto;
+}
+
+.logo-signup--agenda {
+  height: 40px;
+  width: auto;
+}
+
+@media ( max-width: 600px ) {
+  .sponsored-logos {
+    display: flex;
+    align-items: center;
+    
+  }
+  
+  .presented-by {
+    margin-left: 12px;
+    margin-right: 12px;
+    font-weight: bold;
+    font-size: 10px;
+  }
+  
+  .logo-signup--stab {
+    height: 60px;
+    width: auto;
+  }
+  
+  .logo-signup--agenda {
+    height: 20px;
+    width: auto;
+  }
 }
 
 .nav-title {
@@ -60,4 +108,61 @@
   margin-right: 4px;
   font-family: 'Roboto Mono', monospace;
   background-color: transparent;
+}
+
+
+
+
+
+.styled-checkbox {
+  position: absolute;
+  opacity: 0;
+  transition: .2s ease;
+}
+.styled-checkbox + label {
+  position: relative;
+  cursor: pointer;
+  padding: 0;
+  font-size: 12px;
+  color: #b8b8b8;
+}
+.styled-checkbox + label:before {
+  content: '';
+  margin-right: 10px;
+  display: inline-block;
+  vertical-align: text-top;
+  width: 20px;
+  height: 20px;
+  background: #f5f5f5;
+  
+}
+.styled-checkbox:hover + label:before {
+  background: #5000FF;
+}
+.styled-checkbox:focus + label:before {
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.12);
+}
+.styled-checkbox:checked + label:before {
+  background: #5000FF;
+  border: none;
+
+}
+.styled-checkbox:disabled + label {
+  color: #b8b8b8;
+  cursor: auto;
+}
+.styled-checkbox:disabled + label:before {
+  box-shadow: none;
+  background: #ddd;
+}
+.styled-checkbox:checked + label:after {
+  content: '';
+  position: absolute;
+  left: 5px;
+  top: 9px;
+  background: white;
+  width: 2px;
+  height: 2px;
+  box-shadow: 2px 0 0 white, 4px 0 0 white, 4px -2px 0 white, 4px -4px 0 white, 4px -6px 0 white, 4px -8px 0 white;
+  transform: rotate(45deg);
 }

@@ -6,7 +6,7 @@ export default () => (
     <div className="nav-wrapper">
       <img
         className="logo"
-        src={withPrefix('images/stab-black.png')}
+        src={withPrefix('images/stab30.png')}
         alt="Logo"
       />
       <div className="nav-title">
