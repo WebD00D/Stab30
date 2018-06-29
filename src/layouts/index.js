@@ -1,12 +1,18 @@
 import React from 'react'
 import Link from 'gatsby-link'
 import { connect } from 'react-redux'
-import get from 'lodash/get'
+import get from 'lodash/get';
+import ReactGA from 'react-ga';
+
+ReactGA.initialize('UA-2006234-3');
+
 
 import './base.css'
 
 import Container from '../components/container'
 import AudioPlayer from '../components/audioPlayer'
+
+
 
 class Template extends React.Component {
   componentDidMount() {

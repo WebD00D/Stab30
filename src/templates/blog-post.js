@@ -3,7 +3,11 @@ import Helmet from 'react-helmet'
 import Link,  { withPrefix } from 'gatsby-link'
 import get from 'lodash/get'
 import styles from './blog-post.module.css'
-import { connect } from 'react-redux'
+import { connect } from 'react-redux';
+import ReactGA from 'react-ga';
+
+
+
 
 import {
   FacebookShareButton,
@@ -31,9 +35,7 @@ import Navigation from '../components/navigation'
 class BlogPostTemplate extends React.Component {
   constructor(props) {
     super(props)
-
     this._handlePlay = this._handlePlay.bind(this)
-
     this.state = {
       playing: false,
     }
@@ -42,7 +44,12 @@ class BlogPostTemplate extends React.Component {
   componentDidMount() {
     const post = get(this.props, 'data.contentfulBlogPost')
     this.props.setActiveIndex(post.rank - 1)
-console.log(post)
+    console.log("TRACK IT", window.location.pathname)
+    ReactGA.pageview(window.location.pathname);
+    ReactGA.event({
+      category: 'Stab 30 Profile',
+      action: this.props.title
+    });
   }
 
   _handlePlay() {
